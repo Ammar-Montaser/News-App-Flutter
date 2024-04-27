@@ -13,8 +13,8 @@ class HomeScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              "HELLOOOOOOOOOO",
-              style: Theme.of(context).textTheme.bodyLarge,
+              "Sign Up",
+              style: Theme.of(context).textTheme.headlineLarge,
             ),
           ],
         ),

@@ -1,4 +1,5 @@
 import 'package:articles_app/core/theme/app_pallete.dart';
+import 'package:articles_app/core/theme/font_size.dart';
 import 'package:flutter/material.dart';
 
 ThemeData getLightThemeData() {

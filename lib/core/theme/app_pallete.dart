@@ -11,7 +11,3 @@ class DarkTheme {
   static const secondaryColor = Colors.black;
   static const backgroundColor = Color.fromARGB(255, 45, 45, 45);
 }
-
-class fontSize {
-  static const largeBodyFontSize = 20.0;
-}
