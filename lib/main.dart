@@ -1,5 +1,5 @@
 import 'package:articles_app/core/theme/theme.dart';
-import 'package:articles_app/features/homescreen/pages/HomeScreen.dart';
+import 'package:articles_app/features/signup/pages/SignUpScreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       darkTheme: getDarkThemeData(),
       theme: getLightThemeData(),
       themeMode: ThemeMode.system,
-      home: HomeScreen(),
+      home: SignUpScreen(),
     );
   }
 }
