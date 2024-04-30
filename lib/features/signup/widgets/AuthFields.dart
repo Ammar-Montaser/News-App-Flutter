@@ -18,6 +18,12 @@ class AuthFields extends StatelessWidget {
         style: Theme.of(context).textTheme.bodyMedium,
         controller: controller,
         obscureText: isObscureText,
+        validator: (value) {
+          if (value!.isEmpty) {
+            return "$hintText is a required field!";
+          }
+          return null;
+        },
         decoration: InputDecoration(
           hintText: hintText,
           suffixIcon: isObscureText
