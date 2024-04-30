@@ -1,6 +1,6 @@
 import 'package:articles_app/core/theme/theme.dart';
-import 'package:articles_app/features/login/pages/LoginScreen.dart';
-import 'package:articles_app/features/signup/pages/SignUpScreen.dart';
+import 'package:articles_app/features/auth/presentation/pages/LoginScreen.dart';
+import 'package:articles_app/features/auth/presentation/pages/SignUpScreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {

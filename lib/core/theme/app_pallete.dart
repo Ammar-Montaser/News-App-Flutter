@@ -5,7 +5,7 @@ class LightTheme {
   static const secondaryColor = Colors.white;
   static const brandingColor = Colors.pinkAccent;
 
-  static const backgroundColor = Color.fromARGB(255, 209, 209, 209);
+  static const backgroundColor = Color.fromARGB(255, 255, 255, 255);
 }
 
 class DarkTheme {

@@ -1,6 +1,6 @@
 import 'package:articles_app/core/theme/app_pallete.dart';
-import 'package:articles_app/features/signup/pages/SignUpScreen.dart';
-import 'package:articles_app/features/signup/widgets/AuthFields.dart';
+import 'package:articles_app/features/auth/presentation/pages/SignUpScreen.dart';
+import 'package:articles_app/features/auth/presentation/widgets/AuthFields.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';

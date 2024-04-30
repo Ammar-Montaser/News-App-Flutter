@@ -1,6 +1,6 @@
 import 'package:articles_app/core/theme/app_pallete.dart';
-import 'package:articles_app/features/login/pages/LoginScreen.dart';
-import 'package:articles_app/features/signup/widgets/AuthFields.dart';
+import 'package:articles_app/features/auth/presentation/pages/LoginScreen.dart';
+import 'package:articles_app/features/auth/presentation/widgets/AuthFields.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -33,6 +33,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
+      appBar: AppBar(),
       body: SizedBox(
         width: double.infinity,
         child: Padding(
