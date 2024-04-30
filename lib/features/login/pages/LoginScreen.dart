@@ -1,30 +1,28 @@
 import 'package:articles_app/core/theme/app_pallete.dart';
-import 'package:articles_app/features/login/pages/LoginScreen.dart';
+import 'package:articles_app/features/signup/pages/SignUpScreen.dart';
 import 'package:articles_app/features/signup/widgets/AuthFields.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
   static route() => MaterialPageRoute(
-        builder: (context) => LoginScreen(),
+        builder: (context) => SignUpScreen(),
       );
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _LoginScreenState extends State<LoginScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  final nameController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
-    nameController.dispose();
     super.dispose();
   }
 
@@ -42,7 +40,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                "Create A New Account",
+                "Welcome Back...",
                 style: Theme.of(context).textTheme.headlineLarge,
                 textAlign: TextAlign.center,
               ),
@@ -53,13 +51,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 key: formKey,
                 child: Column(
                   children: [
-                    AuthFields(
-                        hintText: "Name",
-                        controller: nameController,
-                        isObscureText: false),
-                    SizedBox(
-                      height: 20,
-                    ),
                     AuthFields(
                         hintText: "Email",
                         controller: emailController,
@@ -88,7 +79,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               ),
                             ),
                         onPressed: () {},
-                        child: Text("SIGN UP"),
+                        child: Text("SIGN IN"),
                       ),
                     ),
                   ],
@@ -99,15 +90,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.push(context, SignUpScreen.route());
+                  Navigator.push(context, LoginScreen.route());
                 },
                 child: RichText(
                   text: TextSpan(
-                      text: "Already have an account?",
+                      text: "Don\'t have an account?",
                       style: Theme.of(context).textTheme.bodySmall,
                       children: [
                         TextSpan(
-                            text: "  SIGN IN",
+                            text: "  SIGN UP",
                             style: Theme.of(context)
                                 .textTheme
                                 .bodySmall!

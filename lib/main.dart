@@ -1,4 +1,5 @@
 import 'package:articles_app/core/theme/theme.dart';
+import 'package:articles_app/features/login/pages/LoginScreen.dart';
 import 'package:articles_app/features/signup/pages/SignUpScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
       darkTheme: getDarkThemeData(),
       theme: getLightThemeData(),
       themeMode: ThemeMode.system,
-      home: SignUpScreen(),
+      home: LoginScreen(),
     );
   }
 }
