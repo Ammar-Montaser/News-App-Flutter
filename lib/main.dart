@@ -2,8 +2,10 @@ import 'package:articles_app/core/theme/theme.dart';
 import 'package:articles_app/features/auth/presentation/pages/LoginScreen.dart';
 import 'package:articles_app/features/auth/presentation/pages/SignUpScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-void main() {
+void main() async {
+  // await Supabase.initialize();
   runApp(const MyApp());
 }
 
