@@ -21,9 +21,19 @@ class AuthRemoteDBImpl implements AuthRemoteDB {
 
   @override
   Future<UserModel> SignInWithEmail(
-      {required String email, required String password}) {
-    // TODO: implement SignInWithEmail
-    throw UnimplementedError();
+      {required String email, required String password}) async {
+    try {
+      final response = await supabaseClient.auth
+          .signInWithPassword(email: email, password: password);
+      print(response.toString());
+      if (response.user == null) {
+        throw ServerException(message: "Error logging in user");
+      }
+      return UserModel.fromJson(response.user!.toJson());
+    } catch (e) {
+      print(e);
+      throw ServerException(message: e.toString());
+    }
   }
 
   @override
