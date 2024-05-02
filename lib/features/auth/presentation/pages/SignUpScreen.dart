@@ -1,5 +1,6 @@
 import 'package:articles_app/core/common/widgets/loader.dart';
 import 'package:articles_app/core/theme/app_pallete.dart';
+import 'package:articles_app/core/utils/snackbar.dart';
 import 'package:articles_app/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:articles_app/features/auth/presentation/pages/LoginScreen.dart';
 import 'package:articles_app/features/auth/presentation/widgets/AuthFields.dart';
@@ -54,7 +55,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 height: 20,
               ),
               BlocConsumer<AuthBloc, AuthState>(
-                listener: (context, state) {},
+                listener: (context, state) {
+                  if (state is AuthFailure) {
+                    showSnackBar(context, state.message);
+                  }
+                },
                 builder: (context, state) {
                   if (state is AuthLoading) {
                     return Loader();
