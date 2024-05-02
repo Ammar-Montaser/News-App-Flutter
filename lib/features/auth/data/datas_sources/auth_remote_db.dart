@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:articles_app/core/failure/exception.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 

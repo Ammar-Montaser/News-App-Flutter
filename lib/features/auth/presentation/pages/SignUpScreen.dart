@@ -1,9 +1,11 @@
 import 'package:articles_app/core/theme/app_pallete.dart';
+import 'package:articles_app/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:articles_app/features/auth/presentation/pages/LoginScreen.dart';
 import 'package:articles_app/features/auth/presentation/widgets/AuthFields.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -88,7 +90,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 Size(100, 60),
                               ),
                             ),
-                        onPressed: () {},
+                        onPressed: () {
+                          if (formKey.currentState!.validate()) {
+                            BlocProvider.of<AuthBloc>(context).add(AuthSignup(
+                                nameController.text.trim(),
+                                emailController.text.trim(),
+                                passwordController.text.trim()));
+                          }
+                        },
                         child: Text("SIGN UP"),
                       ),
                     ),
