@@ -1,14 +1,15 @@
 import 'package:articles_app/core/failure/exception.dart';
+import 'package:articles_app/features/auth/data/models/userModel.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 abstract interface class AuthRemoteDB {
-  Future<String> SignUpWithEmail({
+  Future<UserModel> SignUpWithEmail({
     required String name,
     required String email,
     required String password,
   });
 
-  Future<String> SignInWithEmail({
+  Future<UserModel> SignInWithEmail({
     required String email,
     required String password,
   });
@@ -19,14 +20,14 @@ class AuthRemoteDBImpl implements AuthRemoteDB {
   AuthRemoteDBImpl(this.supabaseClient);
 
   @override
-  Future<String> SignInWithEmail(
+  Future<UserModel> SignInWithEmail(
       {required String email, required String password}) {
     // TODO: implement SignInWithEmail
     throw UnimplementedError();
   }
 
   @override
-  Future<String> SignUpWithEmail(
+  Future<UserModel> SignUpWithEmail(
       {required String name,
       required String email,
       required String password}) async {
@@ -37,7 +38,7 @@ class AuthRemoteDBImpl implements AuthRemoteDB {
       if (response.user == null) {
         throw ServerException(message: "Error Creating user");
       }
-      return response.user!.id;
+      return UserModel.fromJson(response.user!.toJson());
     } catch (e) {
       print(e);
       throw ServerException(message: e.toString());
