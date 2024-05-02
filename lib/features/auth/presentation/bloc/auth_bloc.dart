@@ -15,6 +15,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   void _handleAuthSignup(event, emit) async {
+    emit(AuthLoading());
     final reponse = await _userSignUp(UserSignUpParams(
         name: event.name, email: event.email, password: event.password));
     reponse.fold((l) => emit(AuthFailure(message: l.message)),
