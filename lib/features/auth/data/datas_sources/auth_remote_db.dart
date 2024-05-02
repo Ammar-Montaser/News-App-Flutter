@@ -33,7 +33,7 @@ class AuthRemoteDBImpl implements AuthRemoteDB {
     try {
       final response = await supabaseClient.auth
           .signUp(password: password, email: email, data: {"name": name});
-      print(response);
+      print(response.toString());
       if (response.user == null) {
         throw ServerException(message: "Error Creating user");
       }
