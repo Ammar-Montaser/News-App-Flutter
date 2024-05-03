@@ -2,6 +2,7 @@ import 'package:articles_app/core/secrets/app_secrets.dart';
 import 'package:articles_app/features/auth/data/datas_sources/auth_remote_db.dart';
 import 'package:articles_app/features/auth/data/repository/auth_repository_Impl.dart';
 import 'package:articles_app/features/auth/domain/repository/auth_repository.dart';
+import 'package:articles_app/features/auth/domain/usecases/current_User.dart';
 import 'package:articles_app/features/auth/domain/usecases/user_login.dart';
 import 'package:articles_app/features/auth/domain/usecases/user_sign_up.dart';
 import 'package:articles_app/features/auth/presentation/bloc/auth_bloc.dart';
@@ -26,8 +27,10 @@ void _initAuth() {
         () => AuthRepositoryImpl(authRemoteDB: serviceLocator()))
     ..registerFactory(() => UserSignUp(authRepository: serviceLocator()))
     ..registerFactory(() => UserLogin(authRepository: serviceLocator()))
+    ..registerFactory(() => CurrentUser(authRepository: serviceLocator()))
     ..registerLazySingleton(() => AuthBloc(
           userSignUp: serviceLocator(),
           userLogin: serviceLocator(),
+          currentUser: serviceLocator(),
         ));
 }

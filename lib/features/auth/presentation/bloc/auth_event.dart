@@ -17,3 +17,5 @@ final class Authlogin extends AuthEvent {
 
   Authlogin(this.email, this.password);
 }
+
+final class isUserLoggedIn extends AuthEvent {}
