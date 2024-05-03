@@ -11,4 +11,9 @@ final class AuthSignup extends AuthEvent {
   AuthSignup(this.name, this.email, this.password);
 }
 
-final class Authlogin extends AuthEvent {}
+final class Authlogin extends AuthEvent {
+  final String email;
+  final String password;
+
+  Authlogin(this.email, this.password);
+}
