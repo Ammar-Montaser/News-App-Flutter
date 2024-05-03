@@ -1,9 +1,13 @@
+import 'package:articles_app/core/common/widgets/loader.dart';
 import 'package:articles_app/core/theme/app_pallete.dart';
+import 'package:articles_app/core/utils/snackbar.dart';
+import 'package:articles_app/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:articles_app/features/auth/presentation/pages/SignUpScreen.dart';
 import 'package:articles_app/features/auth/presentation/widgets/AuthFields.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -47,43 +51,62 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(
                 height: 20,
               ),
-              Form(
-                key: formKey,
-                child: Column(
-                  children: [
-                    AuthFields(
-                        hintText: "Email",
-                        controller: emailController,
-                        isObscureText: false),
-                    SizedBox(
-                      height: 20,
+              BlocConsumer<AuthBloc, AuthState>(
+                listener: (context, state) {
+                  if (state is AuthFailure) {
+                    showSnackBar(context, state.message);
+                  }
+                  if (state is AuthSuccess) {}
+                },
+                builder: (context, state) {
+                  if (state is AuthLoading) {
+                    return Loader();
+                  }
+                  return Form(
+                    key: formKey,
+                    child: Column(
+                      children: [
+                        AuthFields(
+                            hintText: "Email",
+                            controller: emailController,
+                            isObscureText: false),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        AuthFields(
+                          hintText: "Password",
+                          controller: passwordController,
+                          isObscureText: true,
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          height: 60,
+                          width: size.width * 0.7,
+                          child: ElevatedButton(
+                            style: Theme.of(context)
+                                .elevatedButtonTheme
+                                .style!
+                                .copyWith(
+                                  maximumSize: MaterialStatePropertyAll(
+                                    Size(100, 60),
+                                  ),
+                                ),
+                            onPressed: () {
+                              if (formKey.currentState!.validate()) {
+                                BlocProvider.of<AuthBloc>(context).add(
+                                    Authlogin(emailController.text.trim(),
+                                        passwordController.text.trim()));
+                              }
+                            },
+                            child: Text("SIGN IN"),
+                          ),
+                        ),
+                      ],
                     ),
-                    AuthFields(
-                      hintText: "Password",
-                      controller: passwordController,
-                      isObscureText: true,
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      height: 60,
-                      width: size.width * 0.7,
-                      child: ElevatedButton(
-                        style: Theme.of(context)
-                            .elevatedButtonTheme
-                            .style!
-                            .copyWith(
-                              maximumSize: MaterialStatePropertyAll(
-                                Size(100, 60),
-                              ),
-                            ),
-                        onPressed: () {},
-                        child: Text("SIGN IN"),
-                      ),
-                    ),
-                  ],
-                ),
+                  );
+                },
               ),
               SizedBox(
                 height: 20,
