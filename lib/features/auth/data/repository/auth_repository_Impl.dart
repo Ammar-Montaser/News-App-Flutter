@@ -12,9 +12,9 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<Either<Failure, User>> SignInWithEmail(
-      {required String email, required String password}) {
-    // TODO: implement SignInWithEmail
-    throw UnimplementedError();
+      {required String email, required String password}) async {
+    return _getUser(() async =>
+        await authRemoteDB.SignInWithEmail(email: email, password: password));
   }
 
   @override
@@ -22,9 +22,13 @@ class AuthRepositoryImpl implements AuthRepository {
       {required String name,
       required String email,
       required String password}) async {
+    return _getUser(() async => await authRemoteDB.SignUpWithEmail(
+        name: name, email: email, password: password));
+  }
+
+  Future<Either<Failure, User>> _getUser(Future<User> Function() fn) async {
     try {
-      final user = await authRemoteDB.SignUpWithEmail(
-          name: name, email: email, password: password);
+      final user = await fn();
       return right(user);
     } on ServerException catch (e) {
       return left(Failure(e.message));
