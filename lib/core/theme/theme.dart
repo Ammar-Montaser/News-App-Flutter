@@ -65,6 +65,11 @@ ThemeData getLightThemeData() {
         ),
       ),
     ),
+    chipTheme: ChipThemeData(
+      color: MaterialStatePropertyAll(LightTheme.secondaryColor),
+      selectedColor: LightTheme.brandingColor,
+      side: BorderSide.none,
+    ),
   );
 }
 
