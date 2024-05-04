@@ -3,6 +3,7 @@ import 'package:articles_app/features/blog/presentation/widgets/blog_editor.dart
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class AddBlog extends StatefulWidget {
   static route() => MaterialPageRoute(builder: (context) => AddBlog());
@@ -40,34 +41,36 @@ class _AddBlogState extends State<AddBlog> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              DottedBorder(
-                radius: Radius.circular(10),
-                borderType: BorderType.RRect,
-                strokeCap: StrokeCap.round,
-                dashPattern: [10, 4],
-                strokeWidth: 2,
-                padding: EdgeInsets.all(10),
-                child: Container(
-                  height: 150,
-                  width: double.infinity,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.folder_open,
-                        size: 50,
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Text(
-                        "Select an Image",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium!
-                            .copyWith(fontWeight: FontWeight.bold),
-                      ),
-                    ],
+              GestureDetector(
+                child: DottedBorder(
+                  radius: Radius.circular(10),
+                  borderType: BorderType.RRect,
+                  strokeCap: StrokeCap.round,
+                  dashPattern: [10, 4],
+                  strokeWidth: 2,
+                  padding: EdgeInsets.all(10),
+                  child: Container(
+                    height: 150,
+                    width: double.infinity,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.folder_open,
+                          size: 50,
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Text(
+                          "Select an Image",
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium!
+                              .copyWith(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
