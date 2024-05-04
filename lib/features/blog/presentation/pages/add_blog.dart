@@ -15,6 +15,7 @@ class AddBlog extends StatefulWidget {
 class _AddBlogState extends State<AddBlog> {
   final titleController = TextEditingController();
   final contentController = TextEditingController();
+  List<String> selectedChips = [];
   @override
   void dispose() {
     super.dispose();
@@ -76,20 +77,33 @@ class _AddBlogState extends State<AddBlog> {
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
-                  children: [
-                    "Technology",
-                    "Business",
-                    "Programming",
-                    "Entertainment"
-                  ]
-                      .map((e) => Padding(
-                            padding: const EdgeInsets.all(5.0),
-                            child: Chip(
-                              label: Text(e),
-                              side: BorderSide(color: LightTheme.primaryColor),
-                            ),
-                          ))
-                      .toList(),
+                  children:
+                      ["Technology", "Business", "Programming", "Entertainment"]
+                          .map((e) => GestureDetector(
+                                onTap: () {
+                                  if (selectedChips.contains(e)) {
+                                    selectedChips.remove(e);
+                                  } else {
+                                    selectedChips.add(e);
+                                  }
+                                  setState(() {});
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Chip(
+                                    color: selectedChips.contains(e)
+                                        ? MaterialStatePropertyAll(
+                                            LightTheme.brandingColor)
+                                        : null,
+                                    label: Text(e),
+                                    side: selectedChips.contains(e)
+                                        ? null
+                                        : BorderSide(
+                                            color: LightTheme.primaryColor),
+                                  ),
+                                ),
+                              ))
+                          .toList(),
                 ),
               ),
               SizedBox(
