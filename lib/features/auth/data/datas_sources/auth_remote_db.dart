@@ -68,7 +68,8 @@ class AuthRemoteDBImpl implements AuthRemoteDB {
             .from("profiles")
             .select()
             .eq("id", currentUserSession!.user.id);
-        return UserModel.fromJson(userData[0]);
+        return UserModel.fromJson(userData[0])
+            .copyWith(email: currentUserSession!.user.email);
       } else {
         return null;
       }

@@ -1,3 +1,4 @@
+import 'package:articles_app/core/common/cubits/app_user/app_user_cubit.dart';
 import 'package:articles_app/core/init_dependencies.dart';
 import 'package:articles_app/core/theme/theme.dart';
 import 'package:articles_app/features/auth/presentation/bloc/auth_bloc.dart';
@@ -9,7 +10,10 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initDependencies();
   runApp(MultiBlocProvider(
-    providers: [BlocProvider(create: (_) => serviceLocator<AuthBloc>())],
+    providers: [
+      BlocProvider(create: (_) => serviceLocator<AppUserCubit>()),
+      BlocProvider(create: (_) => serviceLocator<AuthBloc>()),
+    ],
     child: const MyApp(),
   ));
 }
@@ -36,7 +40,19 @@ class _MyAppState extends State<MyApp> {
       darkTheme: getDarkThemeData(),
       theme: getLightThemeData(),
       themeMode: ThemeMode.system,
-      home: LoginScreen(),
+      home: BlocSelector<AppUserCubit, AppUserState, bool>(
+        selector: (state) {
+          return state is AppUserLoggedIn;
+        },
+        builder: (context, isLoggedIn) {
+          if (isLoggedIn) {
+            return Scaffold(
+              body: Text("Home"),
+            );
+          }
+          return LoginScreen();
+        },
+      ),
     );
   }
 }

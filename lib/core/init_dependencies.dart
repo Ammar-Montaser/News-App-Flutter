@@ -1,3 +1,4 @@
+import 'package:articles_app/core/common/cubits/app_user/app_user_cubit.dart';
 import 'package:articles_app/core/secrets/app_secrets.dart';
 import 'package:articles_app/features/auth/data/datas_sources/auth_remote_db.dart';
 import 'package:articles_app/features/auth/data/repository/auth_repository_Impl.dart';
@@ -28,9 +29,11 @@ void _initAuth() {
     ..registerFactory(() => UserSignUp(authRepository: serviceLocator()))
     ..registerFactory(() => UserLogin(authRepository: serviceLocator()))
     ..registerFactory(() => CurrentUser(authRepository: serviceLocator()))
+    ..registerLazySingleton(() => AppUserCubit())
     ..registerLazySingleton(() => AuthBloc(
           userSignUp: serviceLocator(),
           userLogin: serviceLocator(),
           currentUser: serviceLocator(),
+          appUserCubit: serviceLocator(),
         ));
 }
