@@ -23,19 +23,20 @@ class BlogRepositoryImpl implements BlogRepository {
     try {
       BlogModel blogModel = BlogModel(
           id: const Uuid().v1(),
-          posterId: userId,
+          user_id: userId,
           title: name,
           content: content,
-          imageUrl: "",
+          image_url: "",
           topics: topics,
           updatedAt: DateTime.now());
 
       final url =
           await blogRemoteDB.uploadBlogImage(file: image, blog: blogModel);
-      blogModel = blogModel.copyWith(imageUrl: url);
+      blogModel = blogModel.copyWith(image_url: url);
       final uploadedBlog = await blogRemoteDB.uploadBlog(blogModel);
       return right(uploadedBlog);
     } on ServerException catch (e) {
+      print(e.message);
       return left(Failure(e.message));
     }
   }
