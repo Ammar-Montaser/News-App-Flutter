@@ -3,14 +3,16 @@ import 'dart:convert';
 import 'package:articles_app/features/blog/domain/entities/blog.dart';
 
 class BlogModel extends Blog {
-  BlogModel(
-      {required super.id,
-      required super.user_id,
-      required super.title,
-      required super.content,
-      required super.image_url,
-      required super.topics,
-      required super.updatedAt});
+  BlogModel({
+    required super.id,
+    required super.user_id,
+    required super.title,
+    required super.content,
+    required super.image_url,
+    required super.topics,
+    required super.updatedAt,
+    super.userName,
+  });
 
   @override
   String toString() {
@@ -48,6 +50,7 @@ class BlogModel extends Blog {
   BlogModel copyWith({
     String? id,
     String? user_id,
+    String? userName,
     String? title,
     String? content,
     String? image_url,
@@ -55,6 +58,7 @@ class BlogModel extends Blog {
     DateTime? updatedAt,
   }) {
     return BlogModel(
+      userName: userName ?? this.userName,
       id: id ?? this.id,
       user_id: user_id ?? this.user_id,
       title: title ?? this.title,
