@@ -10,6 +10,7 @@ import 'package:articles_app/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:articles_app/features/blog/data/data_sources/blog_remote_db.dart';
 import 'package:articles_app/features/blog/data/repositories/blog_repositories_impl.dart';
 import 'package:articles_app/features/blog/domain/repositories/blog_repository.dart';
+import 'package:articles_app/features/blog/domain/usecases/get_all_blogs.dart';
 import 'package:articles_app/features/blog/domain/usecases/upload_blog.dart';
 import 'package:articles_app/features/blog/presentation/bloc/blog_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -51,5 +52,7 @@ void _initBlog() {
     ..registerFactory<BlogRepository>(
         () => BlogRepositoryImpl(blogRemoteDB: serviceLocator()))
     ..registerFactory(() => UploadBlog(blogRepository: serviceLocator()))
-    ..registerLazySingleton(() => BlogBloc(serviceLocator()));
+    ..registerFactory(() => getAllBlogs(blogRepository: serviceLocator()))
+    ..registerLazySingleton(() => BlogBloc(
+        uploadBlog: serviceLocator(), get_all_blogs: serviceLocator()));
 }
