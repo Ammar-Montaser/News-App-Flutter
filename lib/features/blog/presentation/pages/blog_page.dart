@@ -4,6 +4,7 @@ import 'package:articles_app/core/utils/snackbar.dart';
 import 'package:articles_app/features/blog/domain/usecases/get_all_blogs.dart';
 import 'package:articles_app/features/blog/presentation/bloc/blog_bloc.dart';
 import 'package:articles_app/features/blog/presentation/pages/add_blog.dart';
+import 'package:articles_app/features/blog/presentation/widgets/blog_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -51,7 +52,10 @@ class _BlogPageState extends State<BlogPage> {
               itemCount: state.blogList.length,
               itemBuilder: (context, index) {
                 final blog = state.blogList[index];
-                return Text(blog.title);
+                return BlogCard(
+                  blog: blog,
+                  color: Colors.amberAccent,
+                );
               },
             );
           }
