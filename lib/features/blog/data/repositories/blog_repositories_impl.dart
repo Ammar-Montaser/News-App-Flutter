@@ -36,7 +36,16 @@ class BlogRepositoryImpl implements BlogRepository {
       final uploadedBlog = await blogRemoteDB.uploadBlog(blogModel);
       return right(uploadedBlog);
     } on ServerException catch (e) {
-      print(e.message);
+      return left(Failure(e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<Blog>>> getAllBlogs() async {
+    try {
+      final blogs = await blogRemoteDB.getAllBlogs();
+      return right(blogs);
+    } on ServerException catch (e) {
       return left(Failure(e.message));
     }
   }
