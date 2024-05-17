@@ -54,7 +54,11 @@ class _BlogPageState extends State<BlogPage> {
                 final blog = state.blogList[index];
                 return BlogCard(
                   blog: blog,
-                  color: Colors.amberAccent,
+                  color: index % 3 == 0
+                      ? Colors.amberAccent
+                      : index % 3 == 1
+                          ? Colors.cyan
+                          : Colors.pinkAccent,
                 );
               },
             );
