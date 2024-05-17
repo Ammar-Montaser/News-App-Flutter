@@ -41,6 +41,8 @@ dependencies:
   dotted_border: ^2.1.0
   image_picker: ^1.1.1
   uuid: ^4.4.0
+  internet_speed_test: ^1.5.0
+  intl: any
 
 dev_dependencies:
   flutter_test:

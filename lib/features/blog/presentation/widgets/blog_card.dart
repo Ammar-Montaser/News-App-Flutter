@@ -12,7 +12,7 @@ class BlogCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(context, BlogViewer.route());
+        Navigator.push(context, BlogViewer.route(blog));
       },
       child: Container(
         margin: EdgeInsetsDirectional.symmetric(horizontal: 12, vertical: 5),
