@@ -6,7 +6,6 @@ import 'package:articles_app/core/common/entities/user.dart';
 import 'package:articles_app/features/auth/data/models/userModel.dart';
 import 'package:articles_app/features/auth/domain/repository/auth_repository.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDB authRemoteDB;
@@ -40,8 +39,6 @@ class AuthRepositoryImpl implements AuthRepository {
       } else {
         return left(Failure("No internet connection!"));
       }
-    } on supabase.AuthException catch (e) {
-      return left(Failure(e.message));
     } on ServerException catch (e) {
       return left(Failure(e.message));
     }
@@ -65,8 +62,6 @@ class AuthRepositoryImpl implements AuthRepository {
       } else {
         return left(Failure("User not logged in"));
       }
-    } on supabase.AuthException catch (e) {
-      return left(Failure(e.message));
     } on ServerException catch (e) {
       return left(Failure(e.message));
     }

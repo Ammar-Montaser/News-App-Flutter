@@ -4,6 +4,7 @@ import 'package:articles_app/core/utils/snackbar.dart';
 import 'package:articles_app/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:articles_app/features/auth/presentation/pages/SignUpScreen.dart';
 import 'package:articles_app/features/auth/presentation/widgets/AuthFields.dart';
+import 'package:articles_app/features/blog/presentation/pages/blog_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -55,13 +56,18 @@ class _LoginScreenState extends State<LoginScreen> {
                 listener: (context, state) {
                   if (state is AuthFailure) {
                     showSnackBar(context, state.message);
+                  } else {
+                    if (state is AuthSuccess) {
+                      Navigator.pushAndRemoveUntil(
+                          context, BlogPage.route(), (route) => false);
+                    }
                   }
-                  if (state is AuthSuccess) {}
                 },
                 builder: (context, state) {
                   if (state is AuthLoading) {
                     return Loader();
                   }
+
                   return Form(
                     key: formKey,
                     child: Column(

@@ -32,6 +32,8 @@ class AuthRemoteDBImpl implements AuthRemoteDB {
         throw ServerException(message: "Error logging in user");
       }
       return UserModel.fromJson(response.user!.toJson());
+    } on AuthException catch (e) {
+      throw ServerException(message: e.message);
     } catch (e) {
       print(e);
       throw ServerException(message: e.toString());
@@ -51,6 +53,8 @@ class AuthRemoteDBImpl implements AuthRemoteDB {
         throw ServerException(message: "Error Creating user");
       }
       return UserModel.fromJson(response.user!.toJson());
+    } on AuthException catch (e) {
+      throw ServerException(message: e.message);
     } catch (e) {
       print(e);
       throw ServerException(message: e.toString());
@@ -73,6 +77,8 @@ class AuthRemoteDBImpl implements AuthRemoteDB {
       } else {
         return null;
       }
+    } on AuthException catch (e) {
+      throw ServerException(message: e.message);
     } catch (e) {
       throw ServerException(message: e.toString());
     }
