@@ -43,6 +43,7 @@ dependencies:
   uuid: ^4.4.0
   internet_speed_test: ^1.5.0
   intl: any
+  internet_connection_checker_plus: ^2.3.0
 
 dev_dependencies:
   flutter_test:
