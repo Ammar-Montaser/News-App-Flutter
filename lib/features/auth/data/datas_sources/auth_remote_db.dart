@@ -15,6 +15,7 @@ abstract interface class AuthRemoteDB {
     required String password,
   });
   Future<UserModel?> getCurrentUserData();
+  void logout();
 }
 
 class AuthRemoteDBImpl implements AuthRemoteDB {
@@ -82,5 +83,10 @@ class AuthRemoteDBImpl implements AuthRemoteDB {
     } catch (e) {
       throw ServerException(message: e.toString());
     }
+  }
+
+  @override
+  Future<void> logout() async {
+    return await supabaseClient.auth.signOut();
   }
 }

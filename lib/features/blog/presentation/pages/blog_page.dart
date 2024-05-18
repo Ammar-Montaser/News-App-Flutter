@@ -1,6 +1,7 @@
 import 'package:articles_app/core/common/widgets/loader.dart';
 import 'package:articles_app/core/init_dependencies.dart';
 import 'package:articles_app/core/utils/snackbar.dart';
+import 'package:articles_app/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:articles_app/features/blog/domain/usecases/get_all_blogs.dart';
 import 'package:articles_app/features/blog/presentation/bloc/blog_bloc.dart';
 import 'package:articles_app/features/blog/presentation/pages/add_blog.dart';
@@ -34,7 +35,12 @@ class _BlogPageState extends State<BlogPage> {
               onPressed: () {
                 Navigator.push(context, AddBlog.route());
               },
-              icon: Icon(CupertinoIcons.add_circled))
+              icon: Icon(CupertinoIcons.add_circled)),
+          IconButton(
+              onPressed: () {
+                BlocProvider.of<AuthBloc>(context).add(logoutUser());
+              },
+              icon: Icon(Icons.logout))
         ],
       ),
       body: BlocConsumer<BlogBloc, BlogState>(
