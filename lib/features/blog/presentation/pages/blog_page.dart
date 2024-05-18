@@ -1,7 +1,9 @@
+import 'package:articles_app/core/common/cubits/app_user/app_user_cubit.dart';
 import 'package:articles_app/core/common/widgets/loader.dart';
 import 'package:articles_app/core/init_dependencies.dart';
 import 'package:articles_app/core/utils/snackbar.dart';
 import 'package:articles_app/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:articles_app/features/auth/presentation/pages/LoginScreen.dart';
 import 'package:articles_app/features/blog/domain/usecases/get_all_blogs.dart';
 import 'package:articles_app/features/blog/presentation/bloc/blog_bloc.dart';
 import 'package:articles_app/features/blog/presentation/pages/add_blog.dart';
@@ -39,6 +41,8 @@ class _BlogPageState extends State<BlogPage> {
           IconButton(
               onPressed: () {
                 BlocProvider.of<AuthBloc>(context).add(logoutUser());
+                Navigator.of(context)
+                    .pushAndRemoveUntil(LoginScreen.route(), (route) => false);
               },
               icon: Icon(Icons.logout))
         ],
