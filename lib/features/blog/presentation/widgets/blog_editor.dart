@@ -19,9 +19,11 @@ class BlogEditor extends StatelessWidget {
         }
         return null;
       },
+      style: TextStyle(fontSize: 18),
       controller: fieldController,
       maxLines: isExpand ? null : 1,
       decoration: InputDecoration(
+        hintStyle: TextStyle(fontSize: 18),
         hintText: hintText,
       ),
     );

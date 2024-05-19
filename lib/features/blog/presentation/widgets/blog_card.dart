@@ -1,6 +1,7 @@
 import 'package:articles_app/core/utils/calc_reading_time.dart';
 import 'package:articles_app/features/blog/domain/entities/blog.dart';
 import 'package:articles_app/features/blog/presentation/pages/blog_viewer.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class BlogCard extends StatelessWidget {
@@ -18,9 +19,12 @@ class BlogCard extends StatelessWidget {
         margin: EdgeInsetsDirectional.symmetric(horizontal: 12, vertical: 5),
         padding: EdgeInsets.all(15),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: color,
-        ),
+            borderRadius: BorderRadius.circular(10),
+            color: color.withAlpha(190),
+            image: DecorationImage(
+                image: NetworkImage(blog.image_url),
+                fit: BoxFit.cover,
+                opacity: 0.25)),
         height: 200,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,13 +49,39 @@ class BlogCard extends StatelessWidget {
                 fontSize: 22,
               ),
             ),
-            Spacer(),
+            SizedBox(
+              height: 10,
+            ),
             Text(
-              "${calcReadingTime(blog.content)} min",
+              blog.content,
+              overflow: TextOverflow.ellipsis,
               style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 15,
+                fontWeight: FontWeight.normal,
+                fontSize: 17,
+                color: Colors.black87,
               ),
+            ),
+            Spacer(),
+            Row(
+              children: [
+                Text(
+                  "By: ${blog.userName}",
+                  style: TextStyle(
+                    fontWeight: FontWeight.normal,
+                    fontSize: 15,
+                    color: Colors.black87,
+                  ),
+                ),
+                Spacer(),
+                Text(
+                  "${calcReadingTime(blog.content)} min",
+                  style: TextStyle(
+                    fontWeight: FontWeight.normal,
+                    fontSize: 15,
+                    color: Colors.black87,
+                  ),
+                ),
+              ],
             ),
           ],
         ),

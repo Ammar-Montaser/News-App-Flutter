@@ -31,7 +31,7 @@ class _BlogPageState extends State<BlogPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Blog App"),
+        title: Text("Bloggy Feed"),
         actions: [
           IconButton(
               onPressed: () {

@@ -54,7 +54,11 @@ class BlogViewer extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 5,
+                ),
+                Divider(),
+                SizedBox(
+                  height: 5,
                 ),
                 Text(
                   blog.content,
