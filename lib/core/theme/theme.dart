@@ -70,6 +70,10 @@ ThemeData getLightThemeData() {
       selectedColor: LightTheme.brandingColor,
       side: BorderSide.none,
     ),
+    iconButtonTheme: IconButtonThemeData(
+        style: ButtonStyle(
+            backgroundColor:
+                MaterialStatePropertyAll(LightTheme.primaryColor))),
   );
 }
 

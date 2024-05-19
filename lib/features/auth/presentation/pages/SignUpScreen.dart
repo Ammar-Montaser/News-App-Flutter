@@ -13,7 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
   static route() => MaterialPageRoute(
-        builder: (context) => LoginScreen(),
+        builder: (context) => SignUpScreen(),
       );
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();

@@ -3,6 +3,7 @@ import 'package:articles_app/core/init_dependencies.dart';
 import 'package:articles_app/core/theme/theme.dart';
 import 'package:articles_app/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:articles_app/features/auth/presentation/pages/LoginScreen.dart';
+import 'package:articles_app/features/auth/presentation/pages/homeScreen.dart';
 import 'package:articles_app/features/blog/presentation/bloc/blog_bloc.dart';
 import 'package:articles_app/features/blog/presentation/pages/blog_page.dart';
 import 'package:flutter/material.dart';
@@ -51,7 +52,7 @@ class _MyAppState extends State<MyApp> {
           if (isLoggedIn) {
             return BlogPage();
           }
-          return LoginScreen();
+          return HomeScreen();
         },
       ),
     );
