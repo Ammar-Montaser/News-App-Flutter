@@ -58,6 +58,9 @@ class HomeScreen extends StatelessWidget {
                         height: 100,
                         width: 100,
                         child: IconButton.filled(
+                          style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStatePropertyAll(Colors.black)),
                           iconSize: 80,
                           alignment: Alignment.center,
                           onPressed: () {

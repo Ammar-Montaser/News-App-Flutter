@@ -3,13 +3,17 @@ import 'package:flutter/material.dart';
 class AuthFields extends StatelessWidget {
   String hintText;
   final TextEditingController controller;
-  bool isObscureText;
+  bool? isObscureText;
+  bool? isPassword;
 
+  VoidCallback? func;
   AuthFields({
     super.key,
     required this.hintText,
     required this.controller,
-    required this.isObscureText,
+    required this.isPassword,
+    this.isObscureText,
+    this.func,
   });
 
   @override
@@ -17,7 +21,7 @@ class AuthFields extends StatelessWidget {
     return TextFormField(
         style: Theme.of(context).textTheme.bodyMedium,
         controller: controller,
-        obscureText: isObscureText,
+        obscureText: isObscureText ?? false,
         validator: (value) {
           if (value!.isEmpty) {
             return "$hintText is a required field!";
@@ -25,15 +29,12 @@ class AuthFields extends StatelessWidget {
           return null;
         },
         decoration: InputDecoration(
-          hintText: hintText,
-          suffixIcon: isObscureText
-              ? IconButton(
-                  onPressed: () {
-                    isObscureText = !isObscureText;
-                  },
-                  icon: Icon(Icons.remove_red_eye),
-                )
-              : null,
-        ));
+            hintText: hintText,
+            suffixIcon: isPassword == true
+                ? IconButton(
+                    onPressed: func,
+                    icon: Icon(Icons.remove_red_eye),
+                  )
+                : null));
   }
 }
