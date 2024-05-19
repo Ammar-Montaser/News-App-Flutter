@@ -36,8 +36,20 @@ ThemeData getLightThemeData() {
         fontWeight: FontWeight.normal,
         color: LightTheme.primaryColor,
       ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: LightTheme.primaryColor, width: 3),
+        borderRadius: BorderRadius.all(
+          Radius.circular(15),
+        ),
+      ),
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(color: LightTheme.primaryColor, width: 3),
+        borderRadius: BorderRadius.all(
+          Radius.circular(15),
+        ),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.redAccent, width: 3),
         borderRadius: BorderRadius.all(
           Radius.circular(15),
         ),
